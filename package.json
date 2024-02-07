@@ -1,18 +1,27 @@
 {
+  "localdbvars": "",
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev",
+    "devlocal": "POSTGRES_HOST=localhost POSTGRES_URL_NON_POOLING=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_HOST=localhost POSTGRES_URL_NON_POOLING=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_PRISMA_URL='postgres://postgres:verySecurePassword123@localhost:5432/verceldb?pgbouncer=true&connect_timeout=15' POSTGRES_URL=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_USER=postgres next dev",
+    "dockercompose": "docker compose -f docker-compose.yml run postgres",
+    "dockerup": "docker compose up",
+    "rebuild": "npm run clean && npm i && prisma generate && prisma db push && next build",
     "build": "prisma generate && prisma db push && next build",
+    "buildlocal": "POSTGRES_HOST=localhost POSTGRES_URL_NON_POOLING=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_PRISMA_URL='postgres://postgres:verySecurePassword123@localhost:5432/verceldb?pgbouncer=true&connect_timeout=15' POSTGRES_URL=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_USER=postgres npx prisma generate && POSTGRES_HOST=localhost POSTGRES_URL_NON_POOLING=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_PRISMA_URL='postgres://postgres:verySecurePassword123@localhost:5432/verceldb?pgbouncer=true&connect_timeout=15' POSTGRES_URL=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_USER=postgres npx prisma db push && POSTGRES_HOST=localhost POSTGRES_URL_NON_POOLING=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_PRISMA_URL='postgres://postgres:verySecurePassword123@localhost:5432/verceldb?pgbouncer=true&connect_timeout=15' POSTGRES_URL=postgres://postgres:verySecurePassword123@localhost:5432/verceldb POSTGRES_USER=postgres npx next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma-studio": "npx prisma studio",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
-    "@prisma/client": "^4.14.0",
-    "@types/node": "^18.11.9",
+    "@prisma/client": "^5.7.1",
+    "@types/node": "^20.10.5",
     "@types/react": "^18.0.25",
+    "@vercel/postgres": "^0.5.1",
     "bcrypt": "^5.1.0",
-    "next": "^13.4.2",
-    "next-auth": "^4.22.1",
+    "next": "^14.0.4",
+    "next-auth": "^4.24.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1"
@@ -23,8 +32,8 @@
     "eslint": "8.11.0",
     "eslint-config-next": "^13.0.5",
     "postcss": "^8.4.12",
-    "prisma": "^4.14.0",
-    "tailwindcss": "^3.0.23",
-    "typescript": "^4.6.2"
+    "prisma": "^5.7.1",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3"
   }
 }

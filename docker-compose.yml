@@ -1,0 +1,27 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: TLrP4OoH5sWm
+  #     POSTGRES_DB: verceldb
+
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=default
+      # - POSTGRES_PASSWORD=verySecurePassword123
+      - POSTGRES_DB=verceldb
+    ports:
+      - 5432:5432
